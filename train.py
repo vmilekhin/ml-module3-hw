@@ -28,9 +28,9 @@ def main() -> None:
 
     model = build_model(num_classes=len(dog_breeds)).to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.AdamW(model.fc.parameters(), lr=1e-3)
+    optimizer = torch.optim.SGD(model.fc.parameters(), lr=0.01, momentum=0.9)
 
-    for epoch in range(3):
+    for epoch in range(5):
         model.train()
         running = 0.0
         for X, y in train_loader:
